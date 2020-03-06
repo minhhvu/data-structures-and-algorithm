@@ -2,9 +2,9 @@
 
 **Practice on data strutures and algorithm using JavaScript.**
 
-# Topics:
+**Topics:**
 
-## Data Structures:
+**1. Data Structures:**
 - Array
 - Hash Table
 - Linked List
@@ -12,7 +12,7 @@
 - Tree
 - Graphs
 
-## Algorithms:
+**2. Algorithms:**
 - Recursion
 - Sorting, BFS, DFS
 - Searching
