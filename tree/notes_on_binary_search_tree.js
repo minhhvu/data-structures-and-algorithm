@@ -27,42 +27,24 @@ function Node(val, left = undefined, right = undefined) {
 // console.log(new Node(5,2))
 // console.log(new Node(4,2,6))
 
-//Binary Search Tree
+//Insert new value to the Binary Search Tree. It will return the root of the new tree
+const insertIntoBST = function(root,val) {
+  if (!root) return new TreeNode(val);
 
-class BinarySearchTree {
-  constructor () {
-    this.root = null
-  }
+  if (val < root.val) root.left =insertIntoBST(root.left, val);
 
-  //return the node that has the new value. It will return undefined when the BST has already the value
-  insert(value) {
-    let newNode = new Node(value);
+  if (val > root.val) root.right = insertIntoBST(root.right, val)
 
-    if (this.root === null) {
-      this.root = newNode;
-      return this;
-    }
+  return root;
+};
 
-    let currentNode = this.root;
-
-    while (true) {
-      if (value === currentNode.val) return undefined;
-
-      if (value < currentNode.val) {
-        if (currentNode.left === null) {
-          break;
-        } else {
-          currentNode = currentNode.left;
-        }
-      } else {
-        if (currentNode.right === null) {
-          break
-        } else {
-          currentNode = currentNode.right;
-        }
-      }
-    }
-
-
-  }
+//Check whether the tree is BTS or not
+const isValidBST = (n, _min = -Infinity, _max = Infinity) => {
+  return (
+    !n
+      ? true
+      : _min < n.val && n.val < _max
+      && isValidBST(n.left, _min, n.val)
+      && isValidBST(n.right, n.val, _max)
+  )
 }
