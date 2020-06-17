@@ -48,3 +48,34 @@ const isValidBST = (n, _min = -Infinity, _max = Infinity) => {
       && isValidBST(n.right, n.val, _max)
   )
 }
+
+//Delete a node on BST
+//https://leetcode.com/problems/delete-node-in-a-bst/
+/*
+  Given a root node reference of a BST and a key, delete the node with the given key in the BST.
+  Return the root node reference (possibly updated) of the BST.
+ */
+
+const deleteNode = function (root, key) {
+  if (!root) return root;
+
+  if (root.val === key) {
+    if (!root.right) {
+      root = root.left;
+    } else {
+      let leftHandNode = root.right;
+      while (leftHandNode.left) {
+        leftHandNode = leftHandNode.left;
+      };
+      leftHandNode.left = root.left;
+      // rightHandNode.right = root.right;
+      root = root.right;
+    }
+  } else if (root.val > key) {
+    root.left = deleteNode(root.left, key)
+  } else {
+    root.right = deleteNode(root.right, key)
+  }
+
+  return root;
+}
